@@ -5,10 +5,9 @@ import com.example.Backend.Services.GastoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/gastos")
@@ -22,4 +21,9 @@ public class GastoController {
         Gasto nuevoGasto = gastoService.registrarGasto(gasto);
         return new ResponseEntity<>(nuevoGasto, HttpStatus.CREATED);
     }
+    @GetMapping("/listar")
+    public List<Gasto> listarGastos() {
+        return gastoService.listarGastos();
+    }
+
 }
